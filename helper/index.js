@@ -1,5 +1,3 @@
 'use strict'
 
-generateSearchUrl = (url,cat,sub_cat,) => {
-    
-}
+module.exports.searchResults = require('./search');
