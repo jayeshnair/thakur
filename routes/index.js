@@ -8,6 +8,8 @@ router.get('/', (req, res) => {
 
 router.get('/listing', controller.listing);
 router.post('/search', (controller.getSearchResults));
+router.post('/loginotp', (controller.getLoginOtp));
+router.post('/confirmotp', (controller.confirmOtp));
 
 
 // Generate 404s
