@@ -7,7 +7,6 @@ getCategory = (cat) => {
 }
 
 generateUrl = (location, category, brand) => {
-    let searchUrl = '';
     if(brand == 'honda') {
         searchUrl = `${config.endpoint.baseUrl}${location}/${category}/cars-${brand}/?json=1`;
     }
@@ -18,7 +17,6 @@ generateUrl = (location, category, brand) => {
 }
 
 getSearchResult = (url, callback) => {
-    let searchResults = {};
     request( url, { json: true }, (error, res, body) => {
         if (error || res.statusCode !== 200) {
             return callback(error || {statusCode: res.statusCode});
@@ -34,7 +32,6 @@ searchResults = (data, callback) => {
     const brand = data.result.parameters.brand ? `${data.result.parameters.brand}` : "";
     const url = generateUrl(location, category, brand);
     const results = getSearchResult(url, (err, body) => {
-        console.log(body);
         if (err) {
             return callback(err);
         }
