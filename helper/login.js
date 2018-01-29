@@ -6,11 +6,18 @@ getCategory = (cat) => {
     return category[1];
 }
 
-generateUrl = () => {
-    return `${config.endpoint.baseUrl}${location}/ajax/account/otplogin/?json=1`;
+generateUrl = type => {
+    let url = '';
+    if (type == 'otp') {
+        url = `${config.endpoint.baseUrl}/ajax/account/otplogin/?json=1`;
+    }
+    else if(type == 'verify') {
+        url = `${config.endpoint.baseUrl}/ajax/account/otploginverify/?json=1`;
+    }
+    return url;
 }
 
-getLoginOtpResult = (url, userPhone, userToken callback) => {
+getLoginOtpResult = (url, userPhone, userToken, callback) => {
     let searchResults = {};
 
     request.post(
@@ -39,7 +46,7 @@ getLoginOtpResult = (url, userPhone, userToken callback) => {
 loginOtpResults = (data, callback) => {
     const userPhone = data.phone;
     const userToken = data.token;
-    const url = generateUrl();
+    const url = generateUrl('otp');
     const results = getLoginOtpResult(url, userPhone, userToken, (err, body) => {
         console.log(body);
         if (err) {
@@ -49,23 +56,42 @@ loginOtpResults = (data, callback) => {
     });
 }
 
-getConfirmOtpResult = (url, callback) => {
+getConfirmOtpResult = (url, hash, password, phone, userToken, callback) => {
     let searchResults = {};
-    request( url, { json: true }, (error, res, body) => {
-        if (error || res.statusCode !== 200) {
-            return callback(error || {statusCode: res.statusCode});
+
+    request.post(
+        {
+            method: 'POST',
+            uri: url,
+            headers: {
+                'User-Agent': 'iPhone App Ver 5.0.1 / Mozilla/5.0 (iPhone; U; CPU iPhone OS 11_2_2 like Mac OS X; en-us) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D5145e',
+                'content-type': 'application/json',
+                'API-Version': '1.982',
+                'token': userToken
+            },
+            formData: {
+                hash,
+                'data[phone]': phone,
+                'data[password]': password
+            },
+            json: true
+        },
+        (error, res, body) => {
+            if (error || res.statusCode !== 200) {
+                return callback(error || {statusCode: res.statusCode});
+            }
+            callback(null, body);
         }
-        callback(null, body);
-    });
+    );
 };
 
 confirmOtpResults = (data, callback) => {
-    const catData = data.result.action;
-    const category = getCategory(catData);
-    const location = data.result.parameters.location ? data.result.parameters.location : "";
-    const brand = data.result.parameters.brand ? `${data.result.parameters.brand}` : "";
-    const url = generateUrl();
-    const results = getConfirmOtpResult(url, (err, body) => {
+    const phone = data.phone;
+    const hash = data.hash;
+    const password = data.password;
+    const userToken = data.token;
+    const url = generateUrl('verify');
+    const results = getConfirmOtpResult(url, hash, password, phone, userToken, (err, body) => {
         console.log(body);
         if (err) {
             return callback(err);
