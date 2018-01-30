@@ -11,10 +11,6 @@ const urlencoded_body_parser = bodyParser.urlencoded({ extended: true });
 
 let port = process.env.PORT || 3000; 
 
-if(process.env.NODE_ENV == 'prod') {
-    port = 80;
-}
-
 app.use(json_body_parser);
 app.use(urlencoded_body_parser);
 
