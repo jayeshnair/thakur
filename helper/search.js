@@ -27,7 +27,11 @@ getSearchResult = (url, callback) => {
         if (error || res.statusCode !== 200) {
             return callback(error || {statusCode: res.statusCode});
         }
-        let apiData = toObject(body.ads);
+        let apiData = {
+            "hello": "yes",
+            "hi":"yes",
+            "no": "yes"
+        };
         callback(null, apiData);  
     });
 };
