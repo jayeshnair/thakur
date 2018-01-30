@@ -22,16 +22,26 @@ toObject = (arr) =>  {
     return rv;
 }
 
+createApiData = (arr) => {
+    var adData = [];
+    for (var i = 0, len = arr.length; i < len; i++) {
+        adData[i] = {
+            "id": arr[i].id,
+            "title": arr[i].title,
+            "image": arr[i].photos[0][0],
+            "url": arr[i].url
+        }
+    }
+    return adData;
+}
+
 getSearchResult = (url, callback) => {
     request( url, { json: true }, (error, res, body) => {
         if (error || res.statusCode !== 200) {
             return callback(error || {statusCode: res.statusCode});
         }
-        let apiData = {
-            "hello": "yes",
-            "hi":"yes",
-            "no": "yes"
-        };
+        let apiData = createApiData(body.ads);
+        console.log(typeof apiData);
         callback(null, apiData);  
     });
 };
