@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/listing', controller.listing);
+router.get('/demo', (controller.demo)),
 router.post('/search', (controller.getSearchResults));
 router.post('/loginotp', (controller.getLoginOtp));
 router.post('/confirmotp', (controller.confirmOtp));

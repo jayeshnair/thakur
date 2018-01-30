@@ -21,7 +21,7 @@ getSearchResult = (url, callback) => {
         if (error || res.statusCode !== 200) {
             return callback(error || {statusCode: res.statusCode});
         }
-        callback(null, body);  
+        callback(null, body.ads);  
     });
 };
 
@@ -35,7 +35,6 @@ searchResults = (data, callback) => {
         if (err) {
             return callback(err);
         }
-        console.log(body);
         callback(null, body);
     });
 }
