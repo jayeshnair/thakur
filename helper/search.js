@@ -23,7 +23,7 @@ toObject = (arr) =>  {
 }
 
 createApiData = (arr) => {
-    var adData = [];
+    let adData = [];
     for (var i = 0, len = arr.length; i < len; i++) {
         adData[i] = {
             "id": arr[i].id,
@@ -32,6 +32,7 @@ createApiData = (arr) => {
             "url": arr[i].url
         }
     }
+    adData = toObject(adData);
     return adData;
 }
 
