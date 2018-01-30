@@ -4,11 +4,16 @@ const express = require('express');
 const app = express();  
 const path = require('path');
 const bodyParser = require('body-parser')
-const ROOT_PATH = path.resolve();
-const port = process.env.PORT || 3000;    
+const ROOT_PATH = path.resolve();   
 const apiRoutes = require('./routes');
 const json_body_parser = bodyParser.json();
 const urlencoded_body_parser = bodyParser.urlencoded({ extended: true });
+
+let port = process.env.PORT || 3000; 
+
+if(process.env.NODE_ENV == 'prod') {
+    port = 80;
+}
 
 app.use(json_body_parser);
 app.use(urlencoded_body_parser);
