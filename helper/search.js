@@ -15,13 +15,20 @@ generateApiUrl = (location, category, brand) => {
     }
     return searchUrl;
 }
+toObject = (arr) =>  {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[i] = arr[i];
+    return rv;
+}
 
 getSearchResult = (url, callback) => {
     request( url, { json: true }, (error, res, body) => {
         if (error || res.statusCode !== 200) {
             return callback(error || {statusCode: res.statusCode});
         }
-        callback(null, body.ads);  
+        let apiData = toObject(body.ads);
+        callback(null, apiData);  
     });
 };
 

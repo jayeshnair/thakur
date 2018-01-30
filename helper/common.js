@@ -3,7 +3,7 @@ apiResponseTemplate = (message, data, contextOut = [], source = 'webhook') => {
         speech: message,
         displayText: message,
         data:{
-            "google" : { data }
+            "google" : data
         },
         contextOut:contextOut,
         source:source
