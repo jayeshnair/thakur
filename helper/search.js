@@ -6,7 +6,7 @@ getCategory = (cat) => {
     return category[1];
 }
 
-generateUrl = (location, category, brand) => {
+generateApiUrl = (location, category, brand) => {
     if(brand == 'honda') {
         searchUrl = `${config.endpoint.baseUrl}${location}/${category}/cars-${brand}/?json=1`;
     }
@@ -30,13 +30,16 @@ searchResults = (data, callback) => {
     const category = getCategory(catData);
     const location = data.result.parameters.location ? data.result.parameters.location : "";
     const brand = data.result.parameters.brand ? `${data.result.parameters.brand}` : "";
-    const url = generateUrl(location, category, brand);
+    const url = generateApiUrl(location, category, brand);
     const results = getSearchResult(url, (err, body) => {
         if (err) {
             return callback(err);
         }
+        console.log(body);
         callback(null, body);
     });
 }
 
-module.exports = searchResults;
+module.exports = { 
+    searchResults
+};

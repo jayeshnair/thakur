@@ -1,6 +1,6 @@
 'use strict'
 
-const searchResults = require('./search');
+const searchResults = require('./search').searchResults;
 const loginOtpResults = require('./login').loginOtpResults;
 const confirmOtpResults = require('./login').confirmOtpResults;
 
