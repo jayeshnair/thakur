@@ -41,7 +41,8 @@ getSearchResult = (url, callback) => {
             console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
             return callback(error || {statusCode: res.statusCode});
             console.log(error);
-        }
+            console.log(res.statusCode);
+        }   
         let apiData = createApiData(body.ads);
         callback(null, apiData);  
     });
