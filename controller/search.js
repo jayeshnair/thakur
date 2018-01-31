@@ -7,6 +7,7 @@ getSearchResults = (req, res) => {
         setTimeout(() => { 
             res.json(apiResponce);
         }, 2000);
+        
     });
 }
 
