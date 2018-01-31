@@ -3,24 +3,7 @@ apiResponseTemplate = (message, data, contextOut = [], source = 'webhook') => {
         speech: message,
         displayText: message,
         data:{
-            "google" : "bbb "+Object.keys(data).length
-        },
-        contextOut:contextOut,
-        source:source
-    }
-    return apiResponse;
-}
-
-apiResponseTemplateDef = (message, data, contextOut = [], source = 'webhook') => {
-    let apiResponse = {
-        speech: message,
-        displayText: message,
-        data: {
-            "google": {
-                "0": {
-                    "id": "aaa "+Object.keys(data).length
-                }
-            }
+            "google" : data
         },
         contextOut:contextOut,
         source:source
@@ -29,6 +12,5 @@ apiResponseTemplateDef = (message, data, contextOut = [], source = 'webhook') =>
 }
 
 module.exports = { 
-    apiResponseTemplate,
-    apiResponseTemplateDef
+    apiResponseTemplate
 };
