@@ -31,8 +31,8 @@ createApiData = (arr) => {
             "image": arr[i].photos[0][0],
             "url": arr[i].url
         }
+        return adData = toObject(adData);
     }
-    return adData = adData;
 }
 
 getSearchResult = (url, callback) => {
