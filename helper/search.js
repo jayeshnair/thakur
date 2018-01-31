@@ -31,8 +31,8 @@ createApiData = (arr) => {
             "image": arr[i].photos[0][0],
             "url": arr[i].url
         }
-        return adData = toObject(adData);
     }
+    return adData = toObject(adData);
 }
 
 getSearchResult = (url, callback) => {
@@ -41,7 +41,6 @@ getSearchResult = (url, callback) => {
             return callback(error || {statusCode: res.statusCode});
         }
         let apiData = createApiData(body.ads);
-        console.log(typeof apiData);
         callback(null, apiData);  
     });
 };
