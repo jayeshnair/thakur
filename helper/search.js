@@ -38,7 +38,9 @@ createApiData = (arr) => {
 getSearchResult = (url, callback) => {
     request( url, { json: true }, (error, res, body) => {
         if (error || res.statusCode !== 200) {
+            console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
             return callback(error || {statusCode: res.statusCode});
+            console.log(error);
         }
         let apiData = createApiData(body.ads);
         callback(null, apiData);  
