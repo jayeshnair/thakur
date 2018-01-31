@@ -29,6 +29,7 @@ createApiData = (arr) => {
             "id": arr[i].id,
             "title": arr[i].title,
             "image": arr[i].photos[0][0],
+            "list_label": arr[i].list_label,
             "url": arr[i].url
         }
     }
