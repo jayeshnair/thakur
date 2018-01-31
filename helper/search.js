@@ -36,15 +36,15 @@ createApiData = (arr) => {
 }
 
 getSearchResult = (url, callback) => {
+    console.log(url);
     request( url, { json: true }, (error, res, body) => {
+        console.log(res.statusCode);
         if (error || res.statusCode !== 200) {
-            console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
             return callback(error || {statusCode: res.statusCode});
-            console.log(error);
-            console.log(res.statusCode);
-        }   
+        }
         let apiData = createApiData(body.ads);
         callback(null, apiData);  
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
     });
 };
 
