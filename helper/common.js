@@ -15,9 +15,11 @@ apiResponseTemplateDef = (message, data, contextOut = [], source = 'webhook') =>
     let apiResponse = {
         speech: message,
         displayText: message,
-        data:{
-            "google" : {
-                "test": "test"
+        data: {
+            "google": {
+                "0": {
+                    "id": "1111111"
+                }
             }
         },
         contextOut:contextOut,
