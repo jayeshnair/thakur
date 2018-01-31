@@ -3,10 +3,10 @@ const helper = require('./../helper')
 getSearchResults = (req, res) => {
     const data = req.body;
     const searchResults = helper.searchResults(data, (error, apiData) => {
-        if(Object.keys(apiData).length !== 0 ) {
-            let apiResponce = helper.apiResponseTemplate('Showing results', apiData);
-            res.json(apiResponce);
-        }
+        console.log(apiData);
+        let apiResponce = helper.apiResponseTemplate('Showing results', apiData);
+        console.log(apiResponce);
+        res.json(apiResponce);
     });
 }
 
