@@ -1,9 +1,14 @@
 apiResponseTemplate = (message, data, contextOut = [], source = 'webhook') => {
-    let apiResponse = {
-        "speech": message,
-        "displayText": message,
-        "data":{
-            "google" : JSON.parse(JSON.stringify(data))
+    const botResponse = {
+        text: "Testing",
+        attachments: data
+    }
+    
+    const apiResponse = {
+        speech: message,
+        displayText: message,
+        data:{
+            google : botResponse
         },
         "contextOut": contextOut,
         "source":source
